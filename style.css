@@ -407,3 +407,21 @@ footer p {
     }
 
 }
+.hero-logo {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+
+    position: relative;
+    z-index: 2;
+
+    box-shadow:
+        0 0 30px rgba(37, 99, 235, 0.3),
+        0 0 80px rgba(37, 99, 235, 0.15);
+
+    transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+    transform: scale(1.03);
+}

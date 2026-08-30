@@ -178,8 +178,6 @@
             <div class="feature-grid">
 
 
-                <!-- 防御 -->
-
                 <article class="feature-card">
 
                     <div class="feature-icon">
@@ -197,8 +195,6 @@
 
                 </article>
 
-
-                <!-- セキュリティ -->
 
                 <article class="feature-card">
 
@@ -218,8 +214,6 @@
                 </article>
 
 
-                <!-- 管理 -->
-
                 <article class="feature-card">
 
                     <div class="feature-icon">
@@ -237,8 +231,6 @@
 
                 </article>
 
-
-                <!-- コミュニティ -->
 
                 <article class="feature-card">
 
@@ -258,8 +250,6 @@
                 </article>
 
 
-                <!-- レベル -->
-
                 <article class="feature-card">
 
                     <div class="feature-icon">
@@ -277,8 +267,6 @@
 
                 </article>
 
-
-                <!-- ゲーム -->
 
                 <article class="feature-card">
 
@@ -322,6 +310,7 @@
 
             <div class="status-card">
 
+
                 <!-- Bot情報 -->
 
                 <div class="status-header">
@@ -342,16 +331,22 @@
 
                                 <span class="status-online">
 
-                                    <span class="status-dot"></span>
+                                    <span
+                                        id="status-dot"
+                                        class="status-dot"
+                                    ></span>
 
-                                    ONLINE
+                                    <span id="status-text">
+                                        LOADING...
+                                    </span>
 
                                 </span>
 
                             </div>
 
-                            <p>
-                                現在正常に稼働しています
+
+                            <p id="status-description">
+                                ステータスを読み込み中...
                             </p>
 
                         </div>
@@ -372,8 +367,11 @@
                             Ping
                         </span>
 
-                        <span class="stat-value">
-                            -- ms
+                        <span
+                            id="status-ping"
+                            class="stat-value"
+                        >
+                            --
                         </span>
 
                     </div>
@@ -385,7 +383,10 @@
                             Uptime
                         </span>
 
-                        <span class="stat-value">
+                        <span
+                            id="status-uptime"
+                            class="stat-value"
+                        >
                             --
                         </span>
 
@@ -398,7 +399,10 @@
                             Servers
                         </span>
 
-                        <span class="stat-value">
+                        <span
+                            id="status-servers"
+                            class="stat-value"
+                        >
                             --
                         </span>
 
@@ -411,8 +415,11 @@
                             Last Updated
                         </span>
 
-                        <span class="stat-value">
-                            手動更新
+                        <span
+                            id="status-updated"
+                            class="stat-value"
+                        >
+                            --
                         </span>
 
                     </div>

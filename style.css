@@ -1,51 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 :root {
-
     --bg: #09090b;
-
     --surface: #111113;
-
     --surface-light: #18181b;
-
     --text: #f4f4f5;
-
     --muted: #a1a1aa;
-
     --accent: #8b5cf6;
-
     --accent-light: #a78bfa;
-
     --border: rgba(255, 255, 255, 0.08);
-
 }
 
 * {
-
     box-sizing: border-box;
-
     margin: 0;
-
     padding: 0;
-
 }
 
 html {
-
     scroll-behavior: smooth;
-
 }
 
 body {
-
     background: var(--bg);
-
     color: var(--text);
-
     font-family: "Inter", "Noto Sans JP", sans-serif;
-
     line-height: 1.6;
-
 }
 
 
@@ -54,63 +34,39 @@ body {
 ========================= */
 
 header {
-
     width: 100%;
-
     max-width: 1200px;
-
     margin: auto;
-
     padding: 24px 32px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
 }
 
 .logo {
-
     font-size: 22px;
-
     font-weight: 800;
-
     letter-spacing: -1px;
-
 }
 
 .logo span {
-
     color: var(--accent-light);
-
 }
 
 nav {
-
     display: flex;
-
     gap: 28px;
-
 }
 
 nav a {
-
     color: var(--muted);
-
     text-decoration: none;
-
     font-size: 14px;
-
     transition: color 0.2s ease;
-
 }
 
 nav a:hover {
-
     color: white;
-
 }
 
 
@@ -119,119 +75,72 @@ nav a:hover {
 ========================= */
 
 .hero {
-
     max-width: 1200px;
-
     min-height: 650px;
-
     margin: auto;
-
     padding: 90px 32px;
-
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 70px;
-
     align-items: center;
-
 }
 
 .eyebrow {
-
     color: var(--accent-light);
-
     font-size: 13px;
-
     font-weight: 700;
-
     letter-spacing: 3px;
-
     margin-bottom: 20px;
-
 }
 
 .hero h1 {
-
     font-size: clamp(56px, 8vw, 100px);
-
     line-height: 0.98;
-
     letter-spacing: -5px;
-
     margin-bottom: 30px;
-
 }
 
 .hero h1 span {
-
     color: var(--accent-light);
-
 }
 
 .hero-text {
-
     max-width: 520px;
-
     color: var(--muted);
-
     font-size: 17px;
-
     margin-bottom: 32px;
-
 }
 
 .hero-buttons {
-
     display: flex;
-
     gap: 14px;
-
 }
 
 .btn {
-
     padding: 13px 22px;
-
     border-radius: 10px;
-
     text-decoration: none;
-
     font-weight: 600;
-
     font-size: 14px;
-
     transition: transform 0.2s ease;
-
 }
 
 .btn:hover {
-
     transform: translateY(-2px);
-
 }
 
 .primary {
-
     background: var(--accent);
-
     color: white;
-
 }
 
 .primary:hover {
-
     background: var(--accent-light);
-
 }
 
 .secondary {
-
     border: 1px solid var(--border);
-
     color: white;
-
 }
 
 
@@ -240,29 +149,18 @@ nav a:hover {
 ========================= */
 
 .hero-decoration {
-
     position: relative;
-
     min-height: 380px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
 }
 
 .hero-logo {
-
     width: 100%;
-
     max-width: 520px;
-
     border-radius: 20px;
-
     position: relative;
-
     z-index: 2;
 
     box-shadow:
@@ -270,13 +168,10 @@ nav a:hover {
         0 0 80px rgba(37, 99, 235, 0.15);
 
     transition: transform 0.3s ease;
-
 }
 
 .hero-logo:hover {
-
     transform: scale(1.03);
-
 }
 
 
@@ -288,35 +183,22 @@ nav a:hover {
 .features,
 .status,
 .about {
-
     max-width: 1200px;
-
     margin: auto;
-
     padding: 110px 32px;
-
 }
 
 .section-title p {
-
     color: var(--accent-light);
-
     font-size: 12px;
-
     font-weight: 700;
-
     letter-spacing: 3px;
-
     margin-bottom: 10px;
-
 }
 
 .section-title h2 {
-
     font-size: 38px;
-
     letter-spacing: -1.5px;
-
 }
 
 
@@ -325,113 +207,73 @@ nav a:hover {
 ========================= */
 
 .project-grid {
-
     margin-top: 45px;
-
 }
 
 .project-card {
-
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 20px;
-
     padding: 38px;
 
     display: flex;
-
     gap: 28px;
 
     transition:
         transform 0.25s ease,
         border-color 0.25s ease;
-
 }
 
 .project-card:hover {
-
     transform: translateY(-5px);
-
     border-color: rgba(139, 92, 246, 0.5);
-
 }
 
 .project-icon {
-
     width: 68px;
-
     height: 68px;
-
     flex-shrink: 0;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     font-size: 32px;
-
     background: #18181b;
-
     border-radius: 16px;
-
 }
 
 .tag {
-
     font-size: 11px;
-
     letter-spacing: 2px;
-
     color: var(--accent-light);
-
 }
 
 .project-card h3 {
-
     font-size: 28px;
-
     margin: 7px 0 12px;
-
 }
 
 .project-card p {
-
     color: var(--muted);
-
     max-width: 700px;
-
 }
 
 .project-links {
-
     display: flex;
-
     gap: 25px;
-
     margin-top: 22px;
-
 }
 
 .project-links a {
-
     color: white;
-
     text-decoration: none;
-
     font-size: 14px;
-
     font-weight: 600;
-
 }
 
 .project-links a:hover {
-
     color: var(--accent-light);
-
 }
 
 
@@ -440,92 +282,61 @@ nav a:hover {
 ========================= */
 
 .features {
-
     border-top: 1px solid var(--border);
-
 }
 
 .feature-grid {
-
     margin-top: 45px;
 
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 20px;
-
 }
 
 .feature-card {
-
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 18px;
-
     padding: 30px;
-
     text-align: center;
 
     transition:
         transform 0.3s ease,
         border-color 0.3s ease,
         background 0.3s ease;
-
 }
 
 .feature-card:hover {
-
     transform: translateY(-6px);
-
     border-color: rgba(139, 92, 246, 0.6);
-
     background: var(--surface-light);
-
 }
 
 .feature-icon {
-
     width: 58px;
-
     height: 58px;
-
     margin: 0 auto 20px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     font-size: 27px;
 
     background: rgba(139, 92, 246, 0.12);
-
     border-radius: 15px;
-
     border: 1px solid rgba(139, 92, 246, 0.2);
-
 }
 
 .feature-card h3 {
-
     font-size: 19px;
-
     margin-bottom: 12px;
-
 }
 
 .feature-card p {
-
     color: var(--muted);
-
     font-size: 14px;
-
     line-height: 1.7;
-
 }
 
 
@@ -534,200 +345,157 @@ nav a:hover {
 ========================= */
 
 .status {
-
     border-top: 1px solid var(--border);
-
 }
 
 .status-card {
-
     margin-top: 45px;
-
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 20px;
-
     overflow: hidden;
 
     transition:
         transform 0.25s ease,
         border-color 0.25s ease;
-
 }
 
 .status-card:hover {
-
     transform: translateY(-4px);
-
     border-color: rgba(139, 92, 246, 0.5);
-
 }
 
 
 /* Bot情報 */
 
 .status-header {
-
     padding: 32px;
-
     border-bottom: 1px solid var(--border);
-
 }
 
 .status-bot-info {
-
     display: flex;
-
     align-items: center;
-
     gap: 20px;
-
 }
 
 .status-icon {
-
     width: 64px;
-
     height: 64px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     font-size: 30px;
 
     background: rgba(139, 92, 246, 0.12);
-
     border: 1px solid rgba(139, 92, 246, 0.25);
-
     border-radius: 18px;
-
 }
 
 .status-name {
-
     display: flex;
-
     align-items: center;
-
     gap: 14px;
-
 }
 
 .status-name h3 {
-
     font-size: 22px;
-
 }
 
 .status-bot-info p {
-
     color: var(--muted);
-
     font-size: 14px;
-
     margin-top: 5px;
-
 }
 
 
-/* ONLINE */
+/* ONLINE / OFFLINE */
 
 .status-online {
-
     display: flex;
-
     align-items: center;
-
     gap: 7px;
 
     padding: 5px 10px;
 
     background: rgba(34, 197, 94, 0.1);
-
     border: 1px solid rgba(34, 197, 94, 0.25);
-
     border-radius: 999px;
 
-    color: #4ade80;
-
+    color: #a1a1aa;
     font-size: 11px;
-
     font-weight: 700;
-
     letter-spacing: 1px;
 
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .status-dot {
-
     width: 7px;
-
     height: 7px;
 
-    background: #4ade80;
-
+    background: #71717a;
     border-radius: 50%;
 
-    box-shadow: 0 0 10px rgba(74, 222, 128, 0.8);
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
 
+
+/* ONLINE */
+
+.status-dot.online {
+    background: #4ade80;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.8);
+}
+
+
+/* OFFLINE */
+
+.status-dot.offline {
+    background: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
 }
 
 
 /* ステータス詳細 */
 
 .status-stats {
-
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
 }
 
 .status-stat {
-
     padding: 25px 28px;
 
     display: flex;
-
     flex-direction: column;
-
     gap: 8px;
 
     border-right: 1px solid var(--border);
-
 }
 
 .status-stat:last-child {
-
     border-right: none;
-
 }
 
 .stat-label {
-
     color: var(--muted);
-
     font-size: 11px;
-
     font-weight: 600;
-
     text-transform: uppercase;
-
     letter-spacing: 1.5px;
-
 }
 
 .stat-value {
-
     font-size: 18px;
-
     font-weight: 700;
-
 }
 
 
@@ -736,21 +504,14 @@ nav a:hover {
 ========================= */
 
 .about {
-
     border-top: 1px solid var(--border);
-
 }
 
 .about-text {
-
     max-width: 700px;
-
     margin-top: 25px;
-
     color: var(--muted);
-
     font-size: 17px;
-
 }
 
 
@@ -759,9 +520,7 @@ nav a:hover {
 ========================= */
 
 footer {
-
     max-width: 1200px;
-
     margin: auto;
 
     padding: 45px 32px;
@@ -769,35 +528,24 @@ footer {
     border-top: 1px solid var(--border);
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     color: var(--muted);
-
     font-size: 13px;
-
 }
 
 footer strong {
-
     color: white;
-
     font-size: 17px;
-
 }
 
 footer p {
-
     margin-top: 3px;
-
 }
 
 .copyright {
-
     margin-top: 0;
-
 }
 
 
@@ -808,94 +556,64 @@ footer p {
 @media (max-width: 800px) {
 
     header {
-
         padding: 20px 24px;
-
     }
 
     nav {
-
         gap: 16px;
-
     }
 
     .hero {
-
         grid-template-columns: 1fr;
-
         padding: 70px 24px;
-
         gap: 20px;
-
     }
 
     .hero h1 {
-
         letter-spacing: -3px;
-
     }
 
     .hero-decoration {
-
         min-height: 280px;
-
     }
 
     .projects,
     .features,
     .status,
     .about {
-
         padding: 80px 24px;
-
     }
 
     .feature-grid {
-
         grid-template-columns: 1fr;
-
     }
 
     .project-card {
-
         flex-direction: column;
-
         padding: 28px;
-
     }
 
 
-    /* Status スマホ */
+    /* Status */
 
     .status-stats {
-
         grid-template-columns: repeat(2, 1fr);
-
     }
 
     .status-stat:nth-child(2) {
-
         border-right: none;
-
     }
 
     .status-stat {
-
         border-bottom: 1px solid var(--border);
-
     }
 
 
     footer {
-
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 20px;
-
         padding: 35px 24px;
-
     }
 
 }
@@ -908,70 +626,47 @@ footer p {
 @media (max-width: 500px) {
 
     nav {
-
         gap: 10px;
-
     }
 
     nav a {
-
         font-size: 12px;
-
     }
 
     .section-title h2 {
-
         font-size: 30px;
-
     }
 
     .hero-buttons {
-
         flex-direction: column;
-
         align-items: flex-start;
-
     }
 
 
     /* Status */
 
     .status-header {
-
         padding: 25px;
-
     }
 
     .status-name {
-
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 6px;
-
     }
 
     .status-stats {
-
         grid-template-columns: 1fr;
-
     }
 
     .status-stat {
-
         border-right: none;
-
     }
 
     .status-icon {
-
         width: 55px;
-
         height: 55px;
-
         font-size: 25px;
-
     }
 
 }

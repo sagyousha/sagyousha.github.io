@@ -1,7 +1,7 @@
 {
-  "online": false,
-  "ping": 0,
-  "servers": 0,
-  "uptime": "0m",
-  "updated": "未更新"
+  "status": "ONLINE",
+  "ping": "190ms",
+  "uptime": "0分 4秒",
+  "servers": 15,
+  "updated_at": "2026-08-30T13:16:19.293086+00:00"
 }

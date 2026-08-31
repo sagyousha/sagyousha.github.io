@@ -11,7 +11,6 @@ window.addEventListener("scroll", () => {
 
     if (!header) return;
 
-
     if (window.scrollY > 30) {
 
         header.style.background =
@@ -34,6 +33,385 @@ window.addEventListener("scroll", () => {
 
 
 // ========================================
+// FORMAT UPTIME
+// ========================================
+
+function formatUptime(seconds) {
+
+    if (typeof seconds === "string") {
+        return seconds;
+    }
+
+    if (!seconds || seconds < 0) {
+        return "--";
+    }
+
+    seconds = Math.floor(seconds);
+
+    const days = Math.floor(seconds / 86400);
+    const hours = Math.floor((seconds % 86400) / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    const parts = [];
+
+    if (days > 0) {
+        parts.push(`${days}d`);
+    }
+
+    if (hours > 0 || days > 0) {
+        parts.push(`${hours}h`);
+    }
+
+    if (minutes > 0 || hours > 0 || days > 0) {
+        parts.push(`${minutes}m`);
+    }
+
+    parts.push(`${secs}s`);
+
+    return parts.join(" ");
+
+}
+
+
+// ========================================
+// FORMAT NUMBER
+// ========================================
+
+function formatNumber(value) {
+
+    if (
+        value === undefined ||
+        value === null ||
+        value === ""
+    ) {
+        return "--";
+    }
+
+    const number = Number(value);
+
+    if (Number.isNaN(number)) {
+        return String(value);
+    }
+
+    return number.toLocaleString();
+
+}
+
+
+// ========================================
+// FORMAT PING
+// ========================================
+
+function formatPing(value) {
+
+    if (
+        value === undefined ||
+        value === null
+    ) {
+        return "--";
+    }
+
+    return `${Math.round(Number(value))}ms`;
+
+}
+
+
+// ========================================
+// FORMAT LAST UPDATED
+// ========================================
+
+function formatLastUpdated(value) {
+
+    if (!value) {
+        return "--";
+    }
+
+    try {
+
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return "--";
+        }
+
+        return date.toLocaleString(
+            "ja-JP",
+            {
+                timeZone: "Asia/Tokyo",
+
+                year: "numeric",
+
+                month: "numeric",
+
+                day: "numeric",
+
+                hour: "2-digit",
+
+                minute: "2-digit",
+
+                second: "2-digit"
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "日時変換エラー:",
+            error
+        );
+
+        return "--";
+
+    }
+
+}
+
+
+// ========================================
+// SET STATUS BADGE
+// ========================================
+
+function setStatusBadge(
+    status,
+    message = null
+) {
+
+    const statusBadge =
+        document.querySelector(
+            ".status-online"
+        );
+
+    const statusMessage =
+        document.querySelector(
+            ".status-bot-info p"
+        );
+
+    if (!statusBadge) return;
+
+    const normalizedStatus =
+        String(status || "OFFLINE")
+            .toUpperCase();
+
+
+    // ========================================
+    // ONLINE
+    // ========================================
+
+    if (
+        normalizedStatus === "ONLINE" ||
+        normalizedStatus === "ON"
+    ) {
+
+        statusBadge.innerHTML = `
+            <span class="status-dot online"></span>
+            ONLINE
+        `;
+
+        statusBadge.style.color =
+            "#4ade80";
+
+        statusBadge.style.background =
+            "rgba(34, 197, 94, 0.1)";
+
+        statusBadge.style.borderColor =
+            "rgba(34, 197, 94, 0.25)";
+
+        if (statusMessage) {
+
+            statusMessage.textContent =
+                message ||
+                "現在正常に稼働しています";
+
+        }
+
+        return;
+
+    }
+
+
+    // ========================================
+    // ERROR
+    // ========================================
+
+    if (
+        normalizedStatus === "ERROR"
+    ) {
+
+        statusBadge.innerHTML = `
+            <span class="status-dot offline"></span>
+            ERROR
+        `;
+
+        statusBadge.style.color =
+            "#f87171";
+
+        statusBadge.style.background =
+            "rgba(248, 113, 113, 0.1)";
+
+        statusBadge.style.borderColor =
+            "rgba(248, 113, 113, 0.25)";
+
+        if (statusMessage) {
+
+            statusMessage.textContent =
+                message ||
+                "ステータス情報を取得できませんでした";
+
+        }
+
+        return;
+
+    }
+
+
+    // ========================================
+    // OFFLINE
+    // ========================================
+
+    statusBadge.innerHTML = `
+        <span class="status-dot offline"></span>
+        OFFLINE
+    `;
+
+    statusBadge.style.color =
+        "#f87171";
+
+    statusBadge.style.background =
+        "rgba(248, 113, 113, 0.1)";
+
+    statusBadge.style.borderColor =
+        "rgba(248, 113, 113, 0.25)";
+
+    if (statusMessage) {
+
+        statusMessage.textContent =
+            message ||
+            "現在Botはオフラインです";
+
+    }
+
+}
+
+
+// ========================================
+// GET STAT ELEMENTS
+// ========================================
+
+function getStatElements() {
+
+    const statValues =
+        document.querySelectorAll(
+            ".stat-value"
+        );
+
+    return {
+
+        ping:
+            statValues[0] || null,
+
+        uptime:
+            statValues[1] || null,
+
+        servers:
+            statValues[2] || null,
+
+        members:
+            statValues[3] || null,
+
+        updated:
+            statValues[4] || null
+
+    };
+
+}
+
+
+// ========================================
+// UPDATE STAT VALUES
+// ========================================
+
+function updateStatValues(data) {
+
+    const elements =
+        getStatElements();
+
+
+    // Ping
+
+    if (elements.ping) {
+
+        elements.ping.textContent =
+            formatPing(
+                data.ping
+            );
+
+    }
+
+
+    // Uptime
+
+    if (elements.uptime) {
+
+        elements.uptime.textContent =
+            formatUptime(
+                data.uptime
+            );
+
+    }
+
+
+    // Servers
+
+    if (elements.servers) {
+
+        elements.servers.textContent =
+            formatNumber(
+                data.servers
+            );
+
+    }
+
+
+    // Members
+    // members または users の両方に対応
+
+    if (elements.members) {
+
+        const memberCount =
+            data.members ??
+            data.users ??
+            0;
+
+        elements.members.textContent =
+            formatNumber(
+                memberCount
+            );
+
+    }
+
+
+    // Last Updated
+    // updated_at または last_updated の両方に対応
+
+    if (elements.updated) {
+
+        const updatedAt =
+            data.updated_at ??
+            data.last_updated ??
+            null;
+
+        elements.updated.textContent =
+            formatLastUpdated(
+                updatedAt
+            );
+
+    }
+
+}
+
+
+// ========================================
 // BOT STATUS LOADER
 // ========================================
 
@@ -41,17 +419,35 @@ async function loadBotStatus() {
 
     try {
 
-        console.log("🌐 ステータスを読み込み中...");
-
-
-        // キャッシュを使わず最新の status.json を取得
-        const response = await fetch(
-            "./status.json?timestamp=" + Date.now(),
-            {
-                cache: "no-store"
-            }
+        console.log(
+            "🌐 ステータスを読み込み中..."
         );
 
+
+        // ========================================
+        // FETCH STATUS.JSON
+        // キャッシュ回避
+        // ========================================
+
+        const response =
+            await fetch(
+                `./status.json?t=${Date.now()}`,
+                {
+                    method: "GET",
+
+                    cache: "no-store",
+
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        // ========================================
+        // HTTP ERROR CHECK
+        // ========================================
 
         if (!response.ok) {
 
@@ -62,8 +458,12 @@ async function loadBotStatus() {
         }
 
 
-        // JSON読み込み
-        const data = await response.json();
+        // ========================================
+        // JSON PARSE
+        // ========================================
+
+        const data =
+            await response.json();
 
 
         console.log(
@@ -73,195 +473,23 @@ async function loadBotStatus() {
 
 
         // ========================================
-        // ELEMENTS
+        // STATUS
+        // online / ONLINE 両対応
         // ========================================
 
-        const statusBadge =
-            document.querySelector(".status-online");
-
-        const statusMessage =
-            document.querySelector(
-                ".status-bot-info p"
-            );
-
-        const statValues =
-            document.querySelectorAll(".stat-value");
-
-
-        const pingElement =
-            statValues[0];
-
-        const uptimeElement =
-            statValues[1];
-
-        const serversElement =
-            statValues[2];
-
-        const membersElement =
-            statValues[3];
-
-        const updatedElement =
-            statValues[4];
+        setStatusBadge(
+            data.status,
+            data.message
+        );
 
 
         // ========================================
-        // ONLINE STATUS
+        // UPDATE STATS
         // ========================================
 
-        if (data.status === "ONLINE") {
-
-            if (statusBadge) {
-
-                statusBadge.innerHTML = `
-                    <span class="status-dot online"></span>
-                    ONLINE
-                `;
-
-                statusBadge.style.color =
-                    "#4ade80";
-
-                statusBadge.style.background =
-                    "rgba(34, 197, 94, 0.1)";
-
-                statusBadge.style.borderColor =
-                    "rgba(34, 197, 94, 0.25)";
-
-            }
-
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    "現在正常に稼働しています";
-
-            }
-
-
-        // ========================================
-        // OFFLINE STATUS
-        // ========================================
-
-        } else {
-
-            if (statusBadge) {
-
-                statusBadge.innerHTML = `
-                    <span class="status-dot offline"></span>
-                    OFFLINE
-                `;
-
-                statusBadge.style.color =
-                    "#f87171";
-
-                statusBadge.style.background =
-                    "rgba(248, 113, 113, 0.1)";
-
-                statusBadge.style.borderColor =
-                    "rgba(248, 113, 113, 0.25)";
-
-            }
-
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    "現在Botはオフラインです";
-
-            }
-
-        }
-
-
-        // ========================================
-        // PING
-        // ========================================
-
-        if (pingElement) {
-
-            pingElement.textContent =
-                data.ping || "--";
-
-        }
-
-
-        // ========================================
-        // UPTIME
-        // ========================================
-
-        if (uptimeElement) {
-
-            uptimeElement.textContent =
-                data.uptime || "--";
-
-        }
-
-
-        // ========================================
-        // SERVERS
-        // ========================================
-
-        if (serversElement) {
-
-            const serverCount =
-                data.servers ?? 0;
-
-            serversElement.textContent =
-                Number(serverCount).toLocaleString();
-
-        }
-
-
-        // ========================================
-        // MEMBERS
-        // ========================================
-
-        if (membersElement) {
-
-            const memberCount =
-                data.members ?? 0;
-
-            membersElement.textContent =
-                Number(memberCount).toLocaleString();
-
-        }
-
-
-        // ========================================
-        // LAST UPDATED
-        // ========================================
-
-        if (updatedElement) {
-
-            if (data.updated_at) {
-
-                const date =
-                    new Date(data.updated_at);
-
-
-                updatedElement.textContent =
-                    date.toLocaleString(
-                        "ja-JP",
-                        {
-                            timeZone: "Asia/Tokyo",
-
-                            month: "numeric",
-
-                            day: "numeric",
-
-                            hour: "2-digit",
-
-                            minute: "2-digit"
-                        }
-                    );
-
-            } else {
-
-                updatedElement.textContent =
-                    "--";
-
-            }
-
-        }
+        updateStatValues(
+            data
+        );
 
 
         console.log(
@@ -277,42 +505,47 @@ async function loadBotStatus() {
         );
 
 
-        const statusBadge =
-            document.querySelector(
-                ".status-online"
-            );
+        // ERROR STATUS
 
-        const statusMessage =
-            document.querySelector(
-                ".status-bot-info p"
-            );
+        setStatusBadge(
+            "ERROR",
+            "ステータス情報を取得できませんでした"
+        );
 
 
-        // ERROR表示
-        if (statusBadge) {
+        // エラー時は値を -- にする
 
-            statusBadge.innerHTML = `
-                <span class="status-dot offline"></span>
-                ERROR
-            `;
+        const elements =
+            getStatElements();
 
-            statusBadge.style.color =
-                "#f87171";
 
-            statusBadge.style.background =
-                "rgba(248, 113, 113, 0.1)";
-
-            statusBadge.style.borderColor =
-                "rgba(248, 113, 113, 0.25)";
-
+        if (elements.ping) {
+            elements.ping.textContent =
+                "--";
         }
 
 
-        if (statusMessage) {
+        if (elements.uptime) {
+            elements.uptime.textContent =
+                "--";
+        }
 
-            statusMessage.textContent =
-                "ステータス情報を取得できませんでした";
 
+        if (elements.servers) {
+            elements.servers.textContent =
+                "--";
+        }
+
+
+        if (elements.members) {
+            elements.members.textContent =
+                "--";
+        }
+
+
+        if (elements.updated) {
+            elements.updated.textContent =
+                "--";
         }
 
     }
@@ -328,11 +561,21 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        // 最初に読み込み
+        console.log(
+            "🚀 Website initialized"
+        );
+
+
+        // 最初の読み込み
+
         loadBotStatus();
 
 
-        // 30秒ごとに更新
+        // ========================================
+        // AUTO REFRESH
+        // 30秒ごと
+        // ========================================
+
         setInterval(
             loadBotStatus,
             30000

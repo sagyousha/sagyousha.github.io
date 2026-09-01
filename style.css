@@ -970,4 +970,50 @@ footer p {
         white-space: normal;
     }
 
+}/* =========================
+   DISCORD CTA BUTTON
+========================= */
+
+.discord-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 16px 28px;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    color: white;
+    background: #5865F2;
+
+    box-shadow:
+        0 10px 30px
+        rgba(88, 101, 242, 0.35);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+.discord-button:hover {
+    transform: translateY(-4px);
+
+    filter: brightness(1.1);
+
+    box-shadow:
+        0 16px 40px
+        rgba(88, 101, 242, 0.5);
+}
+
+
+.discord-icon {
+    font-size: 20px;
 }

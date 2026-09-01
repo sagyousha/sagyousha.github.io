@@ -1,8 +1,8 @@
 {
   "status": "ONLINE",
-  "ping": 172,
+  "ping": 176,
   "servers": 16,
-  "members": 513,
-  "uptime": "9m 5s",
-  "updated_at": "2026-09-01T13:22:41.051747+00:00"
+  "members": 512,
+  "uptime": "10m 5s",
+  "updated_at": "2026-09-01T13:23:41.047041+00:00"
 }
